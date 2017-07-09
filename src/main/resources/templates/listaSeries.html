@@ -1,0 +1,33 @@
+  <html>
+  <head>
+  <title>Reading List</title>
+  </head>
+  <body>
+        <h2>Lista de Livros por Autor</h2>
+        <div th:unless="${#lists.isEmpty(series)}">
+              <dl th:each="serie : ${series}">
+                    <dt class="bookHeadline">
+                          <span th:text="${serie.name}">Title</span> by <span
+                                th:text="${serie.id}">ISBN</span>)
+   
+                    </dt>
+                    <dd class="bookDescription">
+                          <span th:if="${serie.description}" th:text="${livro.description}">Description</span>
+                          <span th:if="${serie.description eq null}"> Nenhuma descrição foi adicionada para esse livro!</span>
+                    </dd>
+              </dl>
+        </div>
+        <div th:if="${#lists.isEmpty(series)}">
+              <p>Nenhum Livro Cadastrado para esse autor</p>
+        </div>
+        <hr />
+        <h3>Adicione um novo livro para o autor:</h3>
+        <form method="POST">
+              <label for="name">Title:</label> <input type="text" name="titulo" size="50"></input><br />  
+              <label for="id">ISBN:</label> <input type="text" name="isbn" size="15"></input><br /> 
+              <label      for="description">Description:</label><br />
+              <textarea name="description" cols="80" rows="5"> </textarea>
+              <br /> <input type="submit"></input>
+        </form>
+  </body>
+  </html>
