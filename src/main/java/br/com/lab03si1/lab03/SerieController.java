@@ -24,19 +24,19 @@ public class SerieController {
     }
 	   
      
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    public String listaSeries(@PathVariable("name") String name, Model model) {
-           List<Serie> listaSeries = serieRepository.findByName(name);
-          if (listaSeries != null) {
-        	  	
-                model.addAttribute("series", listaSeries);
-                for (Serie serie : listaSeries) {
-                	  System.out.println(serie.getName());
-				}
-              
-          }
-          return "listaSeries";
-    }
+//    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+//    public String listaSeries(@PathVariable("name") String name, Model model) {
+//           List<Serie> listaSeries = serieRepository.findByName(name);
+//          if (listaSeries != null) {
+//        	  	
+//                model.addAttribute("series", listaSeries);
+//                for (Serie serie : listaSeries) {
+//                	  System.out.println(serie.getName());
+//				}
+//              
+//          }
+//          return "listaSeries";
+//    }
 
     @RequestMapping(value = "/serie", method = RequestMethod.POST)
     public String adicionaSerie( @RequestBody Serie serie) {
