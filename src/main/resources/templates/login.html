@@ -17,23 +17,31 @@
 	
 	
 	<div ng-controller="postcontroller">
+	
+	<!--LOGANDO NA CONTA -->
 		<form name="customerForm" ng-submit="submitForm()">
-	        <label>FirstName</label>
-	        <input type="text" name="login" class="form-control" ng-model="login"/>
-	        <input type="password" name="senha" class="form-control" ng-model="senha"/>
-	        <button type="submit" class="btn btn-primary">Submit</button>
+	        <label>Cadastro</label>
+	        <input type="text" name="loginCadastro" class="form-control" ng-model="loginCadastro"/>
+	        <input type="password" name="senhaCadastro" class="form-control" ng-model="senhaCadastro"/>
+	        <button type="submit" class="btn btn-primary">Cadastrar</button>
 		</form>
 		<p>{{postResultMessage}}</p>
 	</div>
 	
-	<div ng-controller="getcontroller">
-		<button id="btn-id" ng-click="getfunction()">Get All Customers</button>
-		
-		<ul>
-        	<li ng-repeat="cust in response">{{cust.login + " " + cust.senha}}</li>
-    	</ul>
-		
+	<!--CADASTRO NO SITE-->
+	<div ng-controller="logincontroller">
+	<form  ng-submit="getfunction()">
+		<label>Login</label>
+		<input type="text" name="login" class="form-control" ng-model="login">
+		<input type="password" name="senha" class="form-control" ng-model="senha">
+		<button type="submit" class="btn btn-primary" >Login</button>
+		{{result}}
+	</form>
 	</div>
+
+
+
+	
 	
 </div>
 </body>

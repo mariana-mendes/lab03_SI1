@@ -11,8 +11,8 @@ app.controller('postcontroller', function($scope, $http, $location) {
                 }
         }
 		var data = {
-            login: $scope.login,
-            senha: $scope.senha
+            login: $scope.loginCadastro,
+            senha: $scope.senhaCadastro
         };
 		
 		
@@ -23,26 +23,41 @@ app.controller('postcontroller', function($scope, $http, $location) {
 			$scope.postResultMessage = "Fail!";
 		});
 		
-		$scope.login = "";
-		$scope.senha = "";
+		$scope.loginCadastro = "";
+		$scope.senhaCadastro = "";
 	}
 });
  
-app.controller('getcontroller', function($scope, $http, $location) {
+
+
+app.controller('logincontroller',function($scope, $http, $location){
 	$scope.getfunction = function(){
 		var serv = "http://localhost:8080/"
-		var url = serv + "getUsers";
+		var url = serv + "loginUsuario";
 		
 		var config = {
                 headers : {
                     'Content-Type': 'application/json;charset=utf-8;'
                 }
         }
+
+        var data ={
+        	login: $scope.login,
+        	senha: $scope.senha
+        };
+
+
 		
-		$http.get(url, config).then(function (response) {
-			$scope.response = response.data
+		$http.post(url, data, config).then(function (response) {
+
+			$scope.result = "Sucessful!";
 		}, function (response) {
-			$scope.getResultMessage = "Fail!";
+			$scope.result = "Dados inválidos!";
 		});
+		
+		$scope.login = "";
+		$scope.senha = "";
 	}
+
 });
+
