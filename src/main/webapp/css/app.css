@@ -1,0 +1,89 @@
+
+.form-control{	margin-bottom:  30px;
+float: left;
+
+}
+.text-sinopse{
+	text-align: left;
+	font-size: 15px;
+	float: left;
+}
+
+.add-watchlist{
+	width: 100px;
+	height: 30px;
+	font-size: 10px;
+}
+
+.img-resumo{
+	width: 260px;
+	height: 296px;
+	float: left;
+	margin-right:  10px;
+}
+
+
+.md-card-image{
+	width: 260px;
+	height: 280px;
+
+}
+
+body.modal-open div.modal-backdrop { 
+    z-index: 0; 
+}
+
+#text-home{
+	font-size: 30px
+
+}
+
+.md-padding{
+	background-color: white;
+	align-items: center;
+}
+
+#text-inicio{
+	font-size: 50px;
+	background-color: white;
+
+}
+
+h2{
+	margin-left: 600px;
+	background-color: white;
+	font-family: "Nimbus Sans L";
+}
+
+md-content{
+	background-color: white;
+}
+
+body{
+	background-color: white;
+}
+html{
+	background-color: white;
+}
+
+
+#watchlist-button{
+	background-color: rgb(63,81,181);
+	margin-left: 30px;
+	color: white;
+}
+
+md-card-title{
+	 display: inline-block;
+}
+
+
+#exibicao{
+	float: left;
+}
+
+#episodio{
+	width: 170px;
+	margin-left: 20px;
+
+}

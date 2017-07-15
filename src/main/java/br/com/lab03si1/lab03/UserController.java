@@ -28,6 +28,8 @@ public class UserController {
 
 	@RequestMapping(value = "/postUser", method = RequestMethod.POST)
 	public void postUser(@RequestBody User user) {
+		System.out.println(user);
+
 		if (!loginRepetido(user.getLogin())) {
 			userRepository.save(user);
 			return;
