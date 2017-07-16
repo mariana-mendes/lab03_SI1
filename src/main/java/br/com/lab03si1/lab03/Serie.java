@@ -22,9 +22,17 @@ public class Serie {
       @Column(name="description")
       private String description;
       
+      @Column(name="idUsuario")
+      private Long idUsuario;
       
       
-      public Long getId() {
+      public Long getIdUsuario() {
+		return idUsuario;
+	}
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+	public Long getId() {
             return id;
       }
       public void setId(Long id) {

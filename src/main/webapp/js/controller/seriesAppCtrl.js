@@ -1,4 +1,4 @@
-angular.module("seriesApp",['ngMaterial']).controller("seriesAppCtrl", function ($scope,seriesAPI, $http, $mdDialog) {
+angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesAPI, $http, $mdDialog,$state) {
 	$scope.app = "Banco de Series"
 	$scope.watchlist = [];
 	$scope.arrayExibido = [];
@@ -6,7 +6,7 @@ angular.module("seriesApp",['ngMaterial']).controller("seriesAppCtrl", function 
 	$scope.idSerie ="";
 	$scope.mostraBusca = true;
 
-
+ 
     $scope.buscaInfoSerie = function(key){
       seriesAPI.getSeriesPlot("?i="+key+ "&apikey=93330d3c").then(function(data, status){
       $scope.idSerie = data.data;
@@ -29,7 +29,7 @@ angular.module("seriesApp",['ngMaterial']).controller("seriesAppCtrl", function 
   $scope.notFoundSerieAlert = function(ev) {
       $mdDialog.show(
       $mdDialog.alert()
-        .parent(angular.element(document.querySelector('#popupContainer')))
+        .parent(angular.ele1ment(document.querySelector('#popupContainer')))
         .clickOutsideToClose(true)
         .title('')
         .textContent('Nenhum resultado')
@@ -161,4 +161,47 @@ angular.module("seriesApp",['ngMaterial']).controller("seriesAppCtrl", function 
 
     return false;
 		};
+
+ 
+    $scope.submitForm = function(loginCadastro, senhaCadastro){
+   
+    
+    var url = "/postUser";
+   
+    var data = {
+            login: loginCadastro,
+            senha: senhaCadastro
+        };
+    
+  
+    $http.post(url, data).then(function (response) {
+
+      $scope.postResultMessage = "Sucessful!";
+    
+    }, function (response) {
+      $scope.postResultMessage = "Fail!";
+    });
+    
+  };
+
+
+
+  $scope.getfunction = function(login,senha){
+  
+    var url =  "/loginUsuario";
+    var data ={
+          login: login,
+          senha: senha
+        };
+
+    $http.post(url, data).then(function (response) {
+
+      $scope.result = "Sucessful!";
+      $state.go('main.home');
+    }, function (response) {
+      $scope.result = "Dados inválidos!";
+    });
+
+  }
+
 });

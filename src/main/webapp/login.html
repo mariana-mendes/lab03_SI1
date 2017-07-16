@@ -5,37 +5,35 @@
 	  <title>Spring Boot - Angularjs Example</title>
 	  <meta charset="utf-8" />
 	  <meta name="viewport" content="width=device-width, initial-scale=1" />
-	  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
-	  <script src="/js/controller.js"></script>
-	  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+	   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
 	  
 </head>
 <body>
  
-<div class="container" ng-app="app">
+<div class="container" >
  
 	
 	
-	<div ng-controller="postcontroller">
+	<div>
 	
 	<!--LOGANDO NA CONTA -->
-		<form name="customerForm" ng-submit="submitForm()">
-	        <label>Cadastro</label>
-	        <input type="text" name="loginCadastro" class="form-control" ng-model="loginCadastro"/>
-	        <input type="password" name="senhaCadastro" class="form-control" ng-model="senhaCadastro"/>
-	        <button type="submit" class="btn btn-primary">Cadastrar</button>
-		</form>
-		<p>{{postResultMessage}}</p>
+		<form name="customerForm" ng-submit="getfunction(login,senha)">
+	        <label>Login</label>
+	        <input type="text" name="login" class="form-control" ng-model="login"/>
+	        <input type="password" name="senha" class="form-control" ng-model="senha"/>
+	        <button type="submit" class="btn btn-primary">Login</button>
+		</form>{{result}}
+		<p></p>
 	</div>
 	
 	<!--CADASTRO NO SITE-->
-	<div ng-controller="logincontroller">
-	<form  ng-submit="getfunction()">
-		<label>Login</label>
-		<input type="text" name="login" class="form-control" ng-model="login">
-		<input type="password" name="senha" class="form-control" ng-model="senha">
-		<button type="submit" class="btn btn-primary" >Login</button>
-		{{result}}
+	<div >
+	<form  ng-submit="submitForm(loginCadastro, senhaCadastro)">
+		<label>Cadastro</label>
+		<input type="text" name="loginCadastro" class="form-control" ng-model="loginCadastro">
+		<input type="password" name="senhaCadastro" class="form-control" ng-model="senhaCadastro">
+		<button type="submit" class="btn btn-primary" >Cadastro</button>
+		{{postResultMessage}}
 	</form>
 	</div>
 

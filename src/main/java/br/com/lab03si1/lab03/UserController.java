@@ -33,36 +33,31 @@ public class UserController {
 		if (!loginRepetido(user.getLogin())) {
 			userRepository.save(user);
 			return;
+		} else {
+
+			throw new RuntimeException();
 		}
-
-		throw new RuntimeException();
-
 	}
-	
-	@RequestMapping(value="/loginUsuario", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/loginUsuario", method = RequestMethod.POST)
 	public void login(@RequestBody User user) {
-		System.out.println(user.getLogin());
-		if(!matchLoginESenha(user.getLogin(), user.getSenha())) {
+
+		if (!matchLoginESenha(user.getLogin(), user.getSenha())) {
 			throw new RuntimeException();
 		}
 		return;
 	}
-	
+
 	private boolean loginRepetido(String login) {
-		usuariosCadastrados = userRepository.findAll();
-		for (User user : usuariosCadastrados) {
-			if (user.getLogin().equalsIgnoreCase(login)) {
-				return true;
-			}
-		}
-		return false;
+		User logando = userRepository.findByLogin(login);
+		return logando != null;
 
 	}
 
 	private boolean matchLoginESenha(String login, String senha) {
-		usuariosCadastrados = userRepository.findAll();
-		for (User user : usuariosCadastrados) {
-			if (user.getLogin().equalsIgnoreCase(login) && user.getSenha().equals(senha)) {
+		User logando = userRepository.findByLogin(login);
+		if (logando != null) {
+			if (logando.getSenha().equals(senha)) {
 				return true;
 			}
 		}
