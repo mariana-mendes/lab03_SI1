@@ -9,38 +9,110 @@
 	  
 </head>
 <body>
- 
-<div class="container" >
- 
-	
-	
-	<div>
-	
-	<!--LOGANDO NA CONTA -->
-		<form name="customerForm" ng-submit="getfunction(login,senha)">
-	        <label>Login</label>
-	        <input type="text" name="login" class="form-control" ng-model="login"/>
-	        <input type="password" name="senha" class="form-control" ng-model="senha"/>
-	        <button type="submit" class="btn btn-primary">Login</button>
-		</form>{{result}}
-		<p></p>
-	</div>
-	
-	<!--CADASTRO NO SITE-->
-	<div >
-	<form  ng-submit="submitForm(loginCadastro, senhaCadastro)">
-		<label>Cadastro</label>
-		<input type="text" name="loginCadastro" class="form-control" ng-model="loginCadastro">
-		<input type="password" name="senhaCadastro" class="form-control" ng-model="senhaCadastro">
-		<button type="submit" class="btn btn-primary" >Cadastro</button>
+
+<!--CADASTRO NO SITE-->
+<h2>Faça seu cadastro! </h2>
+<div  ng-cloak class="md-inline-form" id="form-cadastro">
+
+  <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+    <div>
+      <md-input-container>
+        <label>Login</label>
+         <input type="text" name="loginCadastro" ng-model="loginCadastro">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Senha</label>
+     	<input type="password" name="senhaCadastro" ng-model="senhaCadastro">
+
+      </md-input-container>
+    </div>
+
+      <md-input-container>
+        <label>Email</label>
+        <input ng-model="user.email" type="email">
+       </md-input-container>
+       <button type="submit" id="botaoCadastra" class="btn btn-primary" ng-click="submitForm(loginCadastro, senhaCadastro)">Cadastrar!</button>
 		{{postResultMessage}}
-	</form>
-	</div>
+     </md-content>
+
+    </div>
+ 
+
+  <!--LOGIN NO SITE-->
+
+
+  <h2>Já possui uma conta? </h2>
+
+
+<div  ng-cloak class="md-inline-form" id="form-cadastro">
+
+  <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+    <div>
+      <md-input-container>
+        <label>Login</label>
+          <input type="text" name="login"  ng-model="login" required md-no-asterisk name="description" />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Senha</label>
+     	 <input type="password" name="senha" ng-model="senha"/>
+      </md-input-container>
+       <button type="submit" class="btn btn-primary"  ng-click="getfunction(login,senha)">Login</button>
+    </div>
+  </md-content>
+  </div>
 
 
 
-	
-	
+
+
+  <div layout="column" ng-cloak>
+
+  <md-content layout-padding>
+    <form name="projectForm">
+
+     
+
+      <div layout="row">
+        <md-input-container flex="50">
+          <label>Username</label>
+          <input required name="clientName" ng-model="username">
+          <div ng-messages="projectForm.clientName.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+
+       
+        <md-input-container flex="50">
+          <label>Senha</label>
+          <input required name="senha" ng-model="senha">
+          <div ng-messages="projectForm.clientSenha.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <md-input-container class="md-block">
+        <label>Client Email</label>
+        <input required type="email" name="clientEmail" ng-model="project.clientEmail"
+               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+
+        <div ng-messages="projectForm.clientEmail.$error" role="alert">
+          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+            Your email must be between 10 and 100 characters long and look like an e-mail address.
+          </div>
+        </div>
+      </md-input-container>
+
+     
+
+
+    </form>
+  </md-content>
+
 </div>
+
+
 </body>
 </html>
