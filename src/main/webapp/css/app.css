@@ -93,6 +93,9 @@ md-card-title{
 	height: 40px;
 }
 
-#form-cadastro{
-	margin-left: 300px;
+#form-login{
+	width:  400px;
+	margin: 10px;
 }
+
+

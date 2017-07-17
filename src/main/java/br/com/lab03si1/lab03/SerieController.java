@@ -27,8 +27,11 @@ public class SerieController {
 
     @RequestMapping(value = "/addSerie", method = RequestMethod.POST)
     public void adicionaSerie( @RequestBody Serie serie) {
-    	serie.setIdUsuario(serie.getIdUsuario());
-    	serieRepository.save(serie);
+    	Serie nova = new Serie();
+    	nova.setIdUsuario(serie.getIdUsuario());
+    	nova.setIdIMDB(serie.getIdIMDB());
+
+    	serieRepository.save(nova);
           return;
     }
     
@@ -38,6 +41,11 @@ public class SerieController {
     public List<Serie> getSeries(@PathVariable Long idUsuario ){
     	return serieRepository.findByIdUsuario(idUsuario);
     	
+    	
+    }
+    
+    @RequestMapping(value="removeSerie", method = RequestMethod.POST)
+    public void removeSerie(@RequestBody Long idUser){
     	
     }
    

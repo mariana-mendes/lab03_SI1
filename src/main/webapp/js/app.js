@@ -4,7 +4,7 @@ angular.module('tabsDemoDynamicHeight', ['ngMaterial']);
 const app = angular.module("seriesApp",['ui.router','ngMaterial']);
 
 app.config(function($stateProvider, $urlRouterProvider){
-	$urlRouterProvider.otherwise('/home');
+	$urlRouterProvider.otherwise('/login');
 	$stateProvider
 		.state('main',{
 			url: '',

@@ -70,9 +70,19 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
     
     });
 
-
-
   };
+
+
+  var removeSerieBd = function(id){
+    $http.post('/removeSerie', id).then(function(response){
+        
+
+    }, function(response){
+
+    })
+
+
+  }
   
   	$scope.watchlistParaPerfil = function(ev, serie) {
 		var confirm = $mdDialog.confirm()
@@ -256,6 +266,10 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
       }
     })();
 
+
+    $scope.logout = function(){
+      $state.go('main.login');
+    }
 
 
 });
