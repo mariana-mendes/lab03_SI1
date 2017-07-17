@@ -40,12 +40,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/loginUsuario", method = RequestMethod.POST)
-	public void login(@RequestBody User user) {
+	public User login(@RequestBody User user) {
 
 		if (!matchLoginESenha(user.getLogin(), user.getSenha())) {
 			throw new RuntimeException();
 		}
-		return;
+		return userRepository.findByLogin(user.getLogin());
 	}
 
 	private boolean loginRepetido(String login) {

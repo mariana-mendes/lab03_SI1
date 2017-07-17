@@ -8,8 +8,9 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
 
  
     $scope.buscaInfoSerie = function(key){
-      seriesAPI.getSeriesPlot("?i="+key+ "&apikey=93330d3c").then(function(data, status){
-      $scope.idSerie = data.data;
+      return seriesAPI.getSeriesPlot("?i="+key+ "&apikey=93330d3c").then(function(response){
+          $scope.idSerie = response.data; 
+          return response  
       }).catch(function(data, status){
       alert("Algo deu errado");
     });
@@ -49,7 +50,28 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
     }else{
          $scope.minhasSeries.push(serie);
          $scope.showDialogConfirm(ev, serie );
+         addSerieBd(serie);
+
     }
+  };
+
+
+  var addSerieBd = function(serie){
+  
+      var serieBd = {
+          idIMDB: serie.imdbID,
+          description: " ",
+          idUsuario: $scope.usuarioLogado.id
+      }
+
+       var url =  "/addSerie";
+      $http.post(url, serieBd).then(function (response) {
+     }, function (response) {
+    
+    });
+
+
+
   };
   
   	$scope.watchlistParaPerfil = function(ev, serie) {
@@ -186,6 +208,7 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
 
 
 
+
   $scope.getfunction = function(login,senha){
   
     var url =  "/loginUsuario";
@@ -198,10 +221,41 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
 
       $scope.result = "Sucessful!";
       $state.go('main.home');
+
+
+      $scope.usuarioLogado = response.data;
+      carregaSeriesUsuario();
+      console.log($scope.usuarioLogado);
     }, function (response) {
       $scope.result = "Dados inválidos!";
     });
 
-  }
+  };
+
+
+  var carregaSeriesUsuario = function(){
+      var url = '/getSeries/' + $scope.usuarioLogado.id
+      $http.get(url).then(function(response)      {
+
+        for (var i = response.data.length - 1; i >= 0; i--) {
+              $scope.buscaInfoSerie(response.data[i].idIMDB).then(function(response){
+                 $scope.minhasSeries.push(response.data);
+              });
+             
+        }
+           console.log($scope.minhasSeries);
+
+      } );
+
+     
+  };
+
+    (function(){
+      if(!$scope.usuarioLogado){
+            $state.go('main.login');
+      }
+    })();
+
+
 
 });

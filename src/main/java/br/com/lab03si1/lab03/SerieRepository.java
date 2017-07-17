@@ -7,10 +7,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface SerieRepository  extends JpaRepository<Serie, Long> {
 	
 	
-    List<Serie> findByName(String name);
+    List<Serie> findByidIMDB(String idIMDB);
     
    
     List<Serie> findById(String id);
+
+
+	List<Serie> findByIdUsuario(Long idUsuario);
     
  
 

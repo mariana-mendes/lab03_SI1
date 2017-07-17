@@ -16,10 +16,11 @@ public class Serie {
       @GeneratedValue(strategy=GenerationType.AUTO) 
       private Long id; 
       
-      @Column(name="name")
-       private String name; 
+      @Column(name="idIMDB")
+       private String idIMDB; 
       
-      @Column(name="description")
+   
+	@Column(name="description")
       private String description;
       
       @Column(name="idUsuario")
@@ -38,12 +39,7 @@ public class Serie {
       public void setId(Long id) {
             this.id = id;
       }
-      public String getName() {
-            return name;
-      }
-      public void setName(String name) {
-            this.name = name;
-      }
+     
     
       public String getDescription() {
             return description;
@@ -51,6 +47,12 @@ public class Serie {
       public void setDescription(String description) {
             this.description = description;
       }
+      public String getIdIMDB() {
+  		return idIMDB;
+  	}
+  	public void setIdIMDB(String idIMDB) {
+  		this.idIMDB = idIMDB;
+  	}
  
 } 
 		
