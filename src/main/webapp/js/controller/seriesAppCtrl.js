@@ -5,6 +5,7 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
 	$scope.minhasSeries = [];
 	$scope.idSerie ="";
 	$scope.mostraBusca = true;
+  $scope.estaNaWatchlist = true;
 
  
     $scope.buscaInfoSerie = function(key){
@@ -50,6 +51,7 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
     }else{
          $scope.minhasSeries.push(serie);
          $scope.showDialogConfirm(ev, serie );
+         $scope.estaNaWatchlist = false;
          addSerieBd(serie);
 
     }
@@ -61,7 +63,9 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
       var serieBd = {
           idIMDB: serie.imdbID,
           description: " ",
-          idUsuario: $scope.usuarioLogado.id
+          idUsuario: $scope.usuarioLogado.id,
+          watchlist: $scope.estaNaWatchlist 
+
       }
 
        var url =  "/addSerie";
@@ -124,7 +128,9 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
     if(checaSerieRepetida(serie, $scope.minhasSeries)){
        alert('Essa série ja está no seu perfil!');
     }else if(!checaSerieRepetida(serie, $scope.watchlist)){
+      $scope.estaNaWatchlist = true;
       $scope.watchlist.push(serie);
+      addSerieBd(serie);
       $scope.showDialogConfirm(ev, serie);
     }else{
       alert("Essa série já está na sua watchlist!");
@@ -235,7 +241,7 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
 
       $scope.usuarioLogado = response.data;
       carregaSeriesUsuario();
-      console.log($scope.usuarioLogado);
+     
     }, function (response) {
       $scope.result = "Dados inválidos!";
     });
@@ -244,19 +250,26 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
 
 
   var carregaSeriesUsuario = function(){
+      $scope.minhasSeries = [];
+      $scope.watchlist = []; 
       var url = '/getSeries/' + $scope.usuarioLogado.id
-      $http.get(url).then(function(response)      {
+      $http.get(url).then(function(response){
 
-        for (var i = response.data.length - 1; i >= 0; i--) {
-              $scope.buscaInfoSerie(response.data[i].idIMDB).then(function(response){
-                 $scope.minhasSeries.push(response.data);
+      var seriesEncontradas = response.data;
+
+        for (var i = seriesEncontradas.length - 1; i >= 0; i--){
+            if(seriesEncontradas[i].watchlist){
+              $scope.buscaInfoSerie(seriesEncontradas[i].idIMDB).then(function(responseAPI){
+                $scope.watchlist.push(responseAPI.data);
               });
-             
+            }else{
+               $scope.buscaInfoSerie(seriesEncontradas[i].idIMDB).then(function(responseAPI){
+                $scope.minhasSeries.push(responseAPI.data);
+              });
+
+            }
         }
-           console.log($scope.minhasSeries);
-
-      } );
-
+    });
      
   };
 

@@ -13,7 +13,7 @@ public interface SerieRepository  extends JpaRepository<Serie, Long> {
     List<Serie> findById(String id);
 
 
-	List<Serie> findByIdUsuario(Long idUsuario);
+	List<Serie> findByidUsuario(Long idUsuario);
     
  
 

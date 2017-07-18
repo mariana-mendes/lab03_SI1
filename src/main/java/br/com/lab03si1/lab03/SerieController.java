@@ -27,11 +27,7 @@ public class SerieController {
 
     @RequestMapping(value = "/addSerie", method = RequestMethod.POST)
     public void adicionaSerie( @RequestBody Serie serie) {
-    	Serie nova = new Serie();
-    	nova.setIdUsuario(serie.getIdUsuario());
-    	nova.setIdIMDB(serie.getIdIMDB());
-
-    	serieRepository.save(nova);
+    	serieRepository.save(serie);
           return;
     }
     
@@ -39,7 +35,9 @@ public class SerieController {
 	 
     @RequestMapping(value ="getSeries/{idUsuario}", method = RequestMethod.GET)
     public List<Serie> getSeries(@PathVariable Long idUsuario ){
-    	return serieRepository.findByIdUsuario(idUsuario);
+    	return     serieRepository.findByidUsuario(idUsuario);
+
+    			
     	
     	
     }

@@ -26,10 +26,24 @@ public class Serie {
       @Column(name="idUsuario")
       private Long idUsuario;
       
+      @Column(name="watchlist")
+      private boolean watchlist;
       
-      public Long getIdUsuario() {
+      public boolean getWatchlist() {
+		return watchlist;
+	}
+
+
+	public void setWatchlist(boolean watchlist) {
+		this.watchlist = watchlist;
+	}
+
+
+	public Long getIdUsuario() {
 		return idUsuario;
 	}
+      
+      
 	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
