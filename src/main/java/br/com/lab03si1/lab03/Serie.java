@@ -64,6 +64,8 @@ public class Serie {
       public String getIdIMDB() {
   		return idIMDB;
   	}
+      
+      
   	public void setIdIMDB(String idIMDB) {
   		this.idIMDB = idIMDB;
   	}
