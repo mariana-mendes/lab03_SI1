@@ -171,7 +171,9 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
           idIMDB: serie.imdbID,
           description: " ",
           idUsuario: $scope.usuarioLogado.id,
-          watchlist: $scope.estaNaWatchlist 
+          watchlist: $scope.estaNaWatchlist,
+          nota: null,
+          episodio: null,
       }
     var url =  "/addSerie";
     $http.post(url, serieBd).then(function (response) {
