@@ -29,6 +29,32 @@ public class Serie {
       @Column(name="watchlist")
       private boolean watchlist;
       
+      
+      
+      
+      @Column(name="nota")
+      private int nota;
+      
+      @Column(name="episodio")
+      private String episodio;
+      
+
+
+ 	public int getNota() {
+ 		return nota;
+ 	}
+
+ 	public void setNota(int nota) {
+ 		this.nota = nota;
+ 	}
+
+ 	public String getEpisodio() {
+ 		return episodio;
+ 	}
+
+ 	public void setEpisodio(String episodio) {
+ 		this.episodio = episodio;
+ 	}
       public boolean getWatchlist() {
 		return watchlist;
 	}

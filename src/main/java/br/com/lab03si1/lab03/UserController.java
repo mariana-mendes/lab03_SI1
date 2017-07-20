@@ -30,7 +30,7 @@ public class UserController {
 	public void postUser(@RequestBody User user) {
 		System.out.println(user);
 
-		if (!loginRepetido(user.getLogin())) {
+		if (!loginRepetido(user.getLogin()) && !emailRepetido(user.getEmail())) {
 			userRepository.save(user);
 			return;
 		} else {
@@ -52,6 +52,11 @@ public class UserController {
 		User logando = userRepository.findByLogin(login);
 		return logando != null;
 
+	}
+	
+	private boolean emailRepetido(String email){
+		User cadastrando = userRepository.findByEmail(email);
+		return cadastrando != null;
 	}
 
 	private boolean matchLoginESenha(String login, String senha) {

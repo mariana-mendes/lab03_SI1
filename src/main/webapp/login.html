@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
 </head>
-<body>
+<body ng-controller="loginCtrl">
 
 	<!--CADASTRO NO SITE-->
 	<h2>Faça seu cadastro! </h2>
@@ -32,7 +32,7 @@
 
 	      <md-input-container class="md-block">
 	        <label>Client Email</label>
-	        <input required type="email" name="clientEmail" ng-model="email"
+	        <input required type="email" name="clientEmail" ng-model="emailCadastro"
 	               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
 
 	        <div ng-messages="projectForm.clientEmail.$error" role="alert">
@@ -43,7 +43,7 @@
 	      </md-input-container>
 	        {{postResultMessage}}
 	     
-	     <button type="submit" id="botaoCadastra" class="btn btn-primary" ng-click="submitForm(usernameCadastro, senhaCadastro)">Cadastrar!</button>
+	     <button type="submit" id="botaoCadastra" class="btn btn-primary" ng-click="submitForm(usernameCadastro, senhaCadastro, emailCadastro)">Cadastrar!</button>
 	  	</form>
 	  </md-content>
 	</div>

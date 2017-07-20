@@ -19,29 +19,19 @@ public class User {
      @Column(name="senha" , nullable=false)
      private String senha;
      
-     @Column(name="nota")
-     private int nota;
      
-     @Column(name="episodio")
-     private String episodio;
+     @Column(name="email")
+     private String email;
      
-
-
-	public int getNota() {
-		return nota;
+     public String getEmail() {
+		return email;
 	}
 
-	public void setNota(int nota) {
-		this.nota = nota;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getEpisodio() {
-		return episodio;
-	}
-
-	public void setEpisodio(String episodio) {
-		this.episodio = episodio;
-	}
+	
 
 	public Long getId() {
 		return id;

@@ -55,7 +55,7 @@ public class SerieController {
 
 	};
 
-	@RequestMapping(value = "/{idUsuario}/removeSerie", method = RequestMethod.PUT)
+	@RequestMapping(value = "removeSerie/{idUsuario}", method = RequestMethod.PUT)
 	public void removeSerie(@RequestBody String imdbId, @PathVariable Long idUsuario) {
 		List<Serie> series = getSeriesByUser(idUsuario);
 		Serie serie = getSerieById(series, imdbId);
@@ -63,5 +63,24 @@ public class SerieController {
 	
 
 	}
+	
+	@RequestMapping(value = "addNota/{idUsuario}/{imdbId}", method = RequestMethod.PUT)
+	public void addNota(@RequestBody int nota, @PathVariable Long idUsuario, @PathVariable String imdbId){
+		List<Serie> series = getSeriesByUser(idUsuario);
+		Serie serie = getSerieById(series, imdbId);
+		serie.setNota(nota);
+		serieRepository.save(serie);
+		
+	}
+	@RequestMapping(value = "addEpisodio/{idUsuario}/{imdbId}", method = RequestMethod.PUT)
+	public void addEpisodio(@RequestBody String episodio, @PathVariable Long idUsuario, @PathVariable String imdbId){
+		System.out.println("AQUI " + episodio);
+		List<Serie> series = getSeriesByUser(idUsuario);
+		Serie serie = getSerieById(series, imdbId);
+		serie.setEpisodio(episodio);
+		serieRepository.save(serie);
+		
+	}
+
 
 }

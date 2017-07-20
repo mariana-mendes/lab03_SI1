@@ -7,6 +7,37 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
 	$scope.mostraBusca = true;
   $scope.estaNaWatchlist = true;
 
+
+  $scope.nota = function(idIMDB,nota){
+    var url = "/addNota/" + $scope.usuarioLogado.id+ "/" + idIMDB;
+
+    $http.put(url, nota).then(function(response){
+   
+
+    },function(){})
+     
+       carregaSeriesUsuario();
+
+     };
+
+  $scope.episodio = function(idIMDB, episodio){
+    var url =  "/addEpisodio/" + $scope.usuarioLogado.id+  "/"  + idIMDB;
+    console.log(url);
+  
+    $http.put(url, episodio).then(function(response){
+       
+    }, function(response){
+    });
+
+    carregaSeriesUsuario(); 
+
+  };
+
+    
+
+     
+
+
   var removeSerie = function(array, serie){
     var indice = array.indexOf(serie);
     if(indice > -1){
@@ -100,15 +131,25 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
 
       var seriesEncontradas = response.data;
 
-
         for (var i = seriesEncontradas.length - 1; i >= 0; i--){
             if(seriesEncontradas[i].watchlist){
-                $scope.buscaInfoSerie(seriesEncontradas[i].idIMDB).then(function(responseAPI){
+               $scope.buscaInfoSerie(seriesEncontradas[i].idIMDB).then(function(responseAPI){
+
                 $scope.watchlist.push(responseAPI.data);
               });
             }else{
+
+               var nota = seriesEncontradas[i].nota;
+               var episodio = seriesEncontradas[i].episodio;
+
+               console.log(episodio);
+             
                $scope.buscaInfoSerie(seriesEncontradas[i].idIMDB).then(function(responseAPI){
+                 responseAPI.data.nota = nota;
+                responseAPI.data.episodio = episodio;
+                console.log(responseAPI.data);
                 $scope.minhasSeries.push(responseAPI.data);
+
               });
 
             }
@@ -172,8 +213,7 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
           description: " ",
           idUsuario: $scope.usuarioLogado.id,
           watchlist: $scope.estaNaWatchlist,
-          nota: null,
-          episodio: null,
+        
       }
     var url =  "/addSerie";
     $http.post(url, serieBd).then(function (response) {
@@ -236,11 +276,12 @@ var checaSerieRepetida = function(idSerie, array){
     };
 
  
-  $scope.submitForm = function(loginCadastro, senhaCadastro){
+  $scope.submitForm = function(loginCadastro, senhaCadastro, emailCadastro){
     var url = "/postUser";
     var data = {
             login: loginCadastro,
-            senha: senhaCadastro
+            senha: senhaCadastro,
+            email: emailCadastro
         };
 
     $http.post(url, data).then(function (response) {
