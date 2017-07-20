@@ -12,11 +12,9 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
     var url = "/addNota/" + $scope.usuarioLogado.id+ "/" + idIMDB;
 
     $http.put(url, nota).then(function(response){
-   
-
+     
     },function(){})
      
-       carregaSeriesUsuario();
 
      };
 
@@ -25,11 +23,11 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
     console.log(url);
   
     $http.put(url, episodio).then(function(response){
-       
+
     }, function(response){
     });
 
-    carregaSeriesUsuario(); 
+  
 
   };
 
@@ -134,11 +132,14 @@ angular.module("seriesApp").controller("seriesAppCtrl", function ($scope,seriesA
         for (var i = seriesEncontradas.length - 1; i >= 0; i--){
             if(seriesEncontradas[i].watchlist){
                $scope.buscaInfoSerie(seriesEncontradas[i].idIMDB).then(function(responseAPI){
-
                 $scope.watchlist.push(responseAPI.data);
               });
-            }else{
 
+
+
+
+
+            }else{
                var nota = seriesEncontradas[i].nota;
                var episodio = seriesEncontradas[i].episodio;
 

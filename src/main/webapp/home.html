@@ -21,8 +21,8 @@
             				<md-card-title-text>
                 			 <md-button class="md-primary md-raised" ng-click="confirmRemoveMinhasSeries($event, serie)">Remover</md-button>
     								   <md-button  class="md-primary md-raised" data-toggle="modal" data-target="#modalSerie" ng-click="buscaInfoSerie(serie.imdbID); getSinopse()">INFO SERIE</md-button>
-    								   <p><b>Sua nota: </b>{{serie.nota}} <br/><input id="episodio" name="points" min="0" max="10" ng-model="$nota" ng-change="nota(serie.imdbID,$nota)">
-    								   <p><b>Último episódio visto: </b>{{serie.episodio}}<br/><input id="episodio" placeholder="ex: s02e01" ng-model="$episodio" ng-change="episodio(serie.imdbID,$episodio)"></p> 
+    								   <p><b>Sua nota: </b>{{serie.nota}} <br/><input type="range" id="episodio" name="points" min="0" max="10" ng-model="serie.nota" ng-change="nota(serie.imdbID,serie.nota)">
+    								   <p><b>Último episódio visto: </b>{{serie.episodio}}<br/><input id="episodio" placeholder="ex: s02e01" ng-model="serie.episodio" ng-change="episodio(serie.imdbID,serie.episodio)"></p> 
             				</md-card-title-text>
   	        			</md-card-title>	  		
      	 					</md-card>
